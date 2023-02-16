@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:wheather_app/models/weather_model.dart';
 
 import '../api/Api.dart';
@@ -18,15 +20,29 @@ class WeatherService {
     return Weather.fromJson(response.data);
   }
 
-  Future<Condtion> getIconAndCode() async {
+  Future<List<Condtion>> getIconAndCode() async {
+    List<Condtion> itemsList = [];
     var response = await Api(apiUrl: StaticValue.condtionApi)
         .dio
         .get('/docs/conditions.json');
-    return Condtion.fromJson(response.data);
+    var data = response.data;
+    var condtionList = [];
+    data.forEach((item) {
+      itemsList.add(Condtion.fromJson(item));
+    });
+    return itemsList;
   }
 
   void test() async {
-    var response = await Api(apiUrl: StaticValue.testApi).dio.get('/random');
-    print(response.data);
+    List<Condtion> itemsList = [];
+    var response = await Api(apiUrl: StaticValue.condtionApi)
+        .dio
+        .get('/docs/conditions.json');
+    // var data = jsonDecode(response.data);
+
+     var condtionList = response.data;
+    condtionList.forEach((item) {
+      print('data : ${item}');
+    });
   }
 }

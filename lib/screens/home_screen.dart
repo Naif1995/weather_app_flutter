@@ -15,18 +15,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<Weather> weatheDetails;
-  late Future<Condtion> condtion;
+  late Future<List<Condtion>> condtion;
   late double code;
 
   @override
   void initState() {
     super.initState();
-    weatheDetails = WeatherService().getWeatherDetails('Riyadh');
-    weatheDetails.then((value) => {
+    WeatherService()
+    .getWeatherDetails('Riyadh')
+    .then((value) => {
           log(value.current.condition.code.toString()),
-          code = value.current.condition.code});
-    condtion = WeatherService().getIconAndCode();
-    // condtion.then((value) => {log(value.condtionList[0].code.toString())});
+          code = value.current.condition.code
+        });
+    WeatherService()
+        .getIconAndCode()
+        .then((value) => {print('data : ${value[0].languages[0].day_text}')});
   }
 
   @override
@@ -108,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   size: 100,
                 //   AssetImage('assets/weather/day/$code.png'),
                 // )
-
               ],
             )
           ],

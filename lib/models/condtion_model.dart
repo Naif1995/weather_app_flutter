@@ -17,9 +17,9 @@ part 'condtion_model.g.dart';
 @JsonSerializable(createToJson: false)
 class Condtion {
   final double code;
-  final String icon;
+  final int icon;
   final String text;
-  final List<Languages> languages;
+  final List<Languages> languages ;
 
   Condtion(this.code, this.icon, this.text, this.languages);
 

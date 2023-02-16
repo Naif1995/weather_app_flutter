@@ -8,8 +8,8 @@ part of 'condtion_model.dart';
 
 Condtion _$CondtionFromJson(Map<String, dynamic> json) => Condtion(
       (json['code'] as num).toDouble(),
-      json['icon'] as String,
-      json['text'] as String,
+      json['icon'] as int,
+      json['text'] ?? '' as String,
       (json['languages'] as List<dynamic>)
           .map((e) => Languages.fromJson(e as Map<String, dynamic>))
           .toList(),
