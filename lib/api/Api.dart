@@ -23,7 +23,6 @@ class Api {
         receiveTimeout: 15000, // 15 seconds
         connectTimeout: 15000,
         sendTimeout: 15000,
-        
       ),
     );
 

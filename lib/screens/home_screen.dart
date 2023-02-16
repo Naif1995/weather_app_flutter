@@ -21,9 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    WeatherService()
-    .getWeatherDetails('Riyadh')
-    .then((value) => {
+    WeatherService().getWeatherDetails('Riyadh').then((value) => {
           log(value.current.condition.code.toString()),
           code = value.current.condition.code
         });
